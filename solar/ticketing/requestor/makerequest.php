@@ -27,13 +27,20 @@
                     <h3>Create Requests</h3>
                 </div>
 
+                <?php 
+                    $getRequest = $db->getRows('request_type', array('select'=>'type, category, subcategory', 'where'=>array('selection_status'=>'active')));
+                ?>
+
                 <form id="makeRequestForm" style="margin-right: -50%;margin-left: 25%;">
                     <div class="form-group row">
                       <label class="col-sm-2 col-form-label">Type</label>
                       <div class="col-sm-3">
                         <select id="request-type" class="form-control">
-                            <option>Service Request</option>
-                            <option>Restoration Request</option>
+                            <?php
+                                for($i = 0; $i < count($getRequest); $i++){
+                                    echo "<option>". $getRequest[$i]['type'] ."</option>";
+                                }
+                            ?>
                         </select>
                       </div>
                     </div>
@@ -41,8 +48,11 @@
                       <label class="col-sm-2 col-form-label">Category</label>
                       <div class="col-sm-3">
                         <select id="request-category" class="form-control">
-                            <option>Printer</option>
-                            <option>E-Mail</option>
+                            <?php
+                                for($i = 0; $i < count($getRequest); $i++){
+                                    echo "<option>". $getRequest[$i]['category'] ."</option>";
+                                }
+                            ?>
                         </select>
                       </div>
                     </div>
@@ -50,8 +60,11 @@
                       <label class="col-sm-2 col-form-label">Subcategory</label>
                       <div class="col-sm-3">
                         <select id="request-subcategory" class="form-control">
-                            <option>E-Mail Attachment</option>
-                            <option>Network</option>
+                            <?php
+                                for($i = 0; $i < count($getRequest); $i++){
+                                    echo "<option>". $getRequest[$i]['subcategory'] ."</option>";
+                                }
+                            ?>
                         </select>
                       </div>
                     </div>
@@ -80,19 +93,3 @@
 
     <!-- footer here  -->
     <?php include "footer.php"; ?>
-
-    <!-- Bootstrap and necessary plugins -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-
-
-
-    <!-- GenesisUI main scripts -->
-
-    <script src="js/app.js"></script>
-
-</body>
-
-</html>

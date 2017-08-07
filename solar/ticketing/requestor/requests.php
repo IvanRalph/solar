@@ -22,7 +22,10 @@
 
         <!-- Main content -->
         <main class="main">
-
+            <?php
+                
+                $requestDetails = $db->getRows();
+            ?>
 
             <div class="container-fluid">
                 <div class="row" style="margin: 2% 0;">
@@ -85,6 +88,27 @@
                           <td>Mark</td>
                           <td>Mark</td>
                           <td>Mark</td>
+                        </tr><tr>
+                          <th>2</th>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>asd</td>
+                          <td class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
+                          <td>Mark</td>
                         </tr>
                       </tbody>
                     </table>
@@ -118,19 +142,3 @@
     </div>
 
     <?php include "footer.php"; ?>
-
-    <!-- Bootstrap and necessary plugins -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-
-
-
-    <!-- GenesisUI main scripts -->
-
-    <script src="js/app.js"></script>
-
-</body>
-
-</html>

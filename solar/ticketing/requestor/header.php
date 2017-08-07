@@ -1,3 +1,6 @@
+<?php include "php/sql-statements.php";
+    $db = new DB();
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 

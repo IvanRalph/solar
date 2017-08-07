@@ -136,19 +136,3 @@
 
     <!-- footer here  -->
     <?php include "footer.php"; ?>
-
-    <!-- Bootstrap and necessary plugins -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/tether/dist/js/tether.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/pace/pace.min.js"></script>
-
-
-
-    <!-- GenesisUI main scripts -->
-
-    <script src="js/app.js"></script>
-
-</body>
-
-</html>
