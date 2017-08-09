@@ -120,21 +120,21 @@ if ($.ajaxLoad) {
   }
 
   $(document).on('click', '.nav a[href!="#"]', function(e) {
-    if ( $(this).parent().parent().hasClass('nav-tabs') || $(this).parent().parent().hasClass('nav-pills') ) {
-      e.preventDefault();
-    } else if ( $(this).attr('target') == '_top' ) {
-      e.preventDefault();
-      var target = $(e.currentTarget);
-      window.location = (target.attr('href'));
-    } else if ( $(this).attr('target') == '_blank' ) {
-      e.preventDefault();
-      var target = $(e.currentTarget);
-      window.open(target.attr('href'));
-    } else {
-      e.preventDefault();
-      var target = $(e.currentTarget);
-      setUpUrl(target.attr('href'));
-    }
+    // if ( $(this).parent().parent().hasClass('nav-tabs') || $(this).parent().parent().hasClass('nav-pills') ) {
+    //   e.preventDefault();
+    // } else if ( $(this).attr('target') == '_top' ) {
+    //   e.preventDefault();
+    //   var target = $(e.currentTarget);
+    //   window.location = (target.attr('href'));
+    // } else if ( $(this).attr('target') == '_blank' ) {
+    //   e.preventDefault();
+    //   var target = $(e.currentTarget);
+    //   window.open(target.attr('href'));
+    // } else {
+    //   e.preventDefault();
+    //   var target = $(e.currentTarget);
+    //   setUpUrl(target.attr('href'));
+    // }
   });
 
   $(document).on('click', 'a[href="#"]', function(e) {
@@ -171,7 +171,7 @@ function loadPage(url) {
       }).delay(250).animate({ opacity : 1 }, 0);
     },
     error : function() {
-      window.location.href = $.page404;
+      //window.location.href = $.page404;
     }
 
   });

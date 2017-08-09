@@ -1,4 +1,4 @@
-<?php include "php/sql-statements.php";
+<?php include "../php/sql-statements.php";
     $db = new DB();
     ?>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
 
     <!-- Main styles for this application -->
     <link href="css/style.css" rel="stylesheet">
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <!-- BODY options, add following classes to body to change options
@@ -53,7 +53,7 @@
         <a class="navbar-brand" href="#"></a>
         <ul class="nav navbar-nav d-md-down-none" style="margin-right: 2%;">
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout <span class="icon-power"></span></span></a>
+                <a class="nav-link" id="logout" href="../logout.php">Logout <span class="icon-power"></span></span></a>
             </li>
         </ul>
     </header>

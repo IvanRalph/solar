@@ -50,6 +50,9 @@
 	        }elseif(!array_key_exists("start",$conditions) && array_key_exists("limit",$conditions)){
 	            $sql .= ' LIMIT '.$conditions['limit']; 
 	        }
+
+	        return $sql;
+	        die();
 	        
 	        $query = $this->db->prepare($sql);
 	        $i = 0;
@@ -76,7 +79,7 @@
 	            if($query->rowCount() > 0){
 	                $data = $query->fetchAll();
 	            }
-	        }
+	        } 
 	        return !empty($data)?$data:false;
 	    }
 

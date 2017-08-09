@@ -1,3 +1,67 @@
+<?php
+include "php/sql-statements.php";
+
+$db = new DB();
+require_once 'config.php';
+require_once 'lib/Google_Client.php';
+require_once 'lib/Google_Oauth2Service.php';
+
+$client = new Google_Client();
+$client->setApplicationName("Solar IT Service Desk");
+
+$client->setClientId(CLIENT_ID);
+$client->setClientSecret(CLIENT_SECRET);
+$client->setRedirectUri(REDIRECT_URI);
+$client->setApprovalPrompt(APPROVAL_PROMPT);
+$client->setAccessType(ACCESS_TYPE);
+
+$oauth2 = new Google_Oauth2Service($client);
+
+if (isset($_GET['code'])) {
+  $client->authenticate($_GET['code']);
+  $_SESSION['token'] = $client->getAccessToken();
+  echo '<script type="text/javascript">window.close();</script>'; exit;
+}
+
+if (isset($_SESSION['token'])) {
+ $client->setAccessToken($_SESSION['token']);
+}
+
+if (isset($_REQUEST['error'])) {
+ echo '<script type="text/javascript">window.close();</script>'; exit;
+}
+
+if ($client->getAccessToken()) {
+  $user = $oauth2->userinfo->get();
+
+  // print_r($user);
+  // die();
+
+  $checkUser = $db->getRows('users', array('where'=>array('google_id'=>$user['id'])));
+  
+  if($checkUser == 0){
+    $userData = array(
+        'google_id'=>$user['id'],
+        'username'=>$user['email'],
+        'email'=>$user['email'],
+        'firstname'=>$user['given_name'],
+        'lastname'=>$user['family_name'],
+        'user_type_id'=>'1'
+    );
+  $insert = $db->insert('users', $userData);
+  }
+
+  // The access token may have been updated lazily.
+  $_SESSION['token'] = $client->getAccessToken();
+
+  if(isset($_SESSION['token'])){
+    header("location: requestor/index.php");
+  }
+
+} else {
+  $authUrl = $client->createAuthUrl();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +70,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
-    <meta name="author" content="Lukasz Holeczek">
-    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
     <meta name="google-signin-client_id" content="737582773898-s4mm5icfspplc31ifolic1cl5fncnj14.apps.googleusercontent.com">
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
@@ -26,6 +87,18 @@
             margin: 0 auto;
         }
     </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/oauthpopup.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        
+         $('a.login').oauthpopup({
+                path: '<?php if(isset($authUrl)){echo $authUrl;}else{ echo '';}?>',
+                width:650,
+                height:350,
+            });
+    });
+    </script>
 
 </head>
 
@@ -38,6 +111,16 @@
                         <div class="card-block">
                             <img src="requestor/img/solar-logo.png" width="60%" style="display: block; margin: 0 auto;"><br><br>
                             <div class="g-signin2" data-longtitle="true" data-onsuccess="Google_signIn" data-theme="dark" data-width="200"></div>
+                            <?php if(isset($personMarkup)): ?>
+                            <?php print_r($user) ?>
+                            <?php endif ?>
+                            <?php
+                              if(isset($authUrl)) {
+                                print "<a class='login' href='javascript:void(0);'><img alt='Signin in with Google' src='signin_google.png'/></a>";
+                              } else {
+                               print "<a class='logout' href='javascript:void(0);'>Logout</a>";
+                              }
+                            ?>
                         </div>
                     </div>
                     <div class="card card-inverse card-primary py-5 d-md-down-none" style="width:44%">
@@ -56,12 +139,12 @@
 
 
     <!-- Bootstrap and necessary plugins -->
-    <script src="requestor/bower_components/jquery/dist/jquery.min.js"></script>
+    
     <script src="requestor/bower_components/tether/dist/js/tether.min.js"></script>
     <script src="requestor/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         function Google_signIn(googleUser) {
           var profile = googleUser.getBasicProfile();
           console.log(profile);
@@ -87,7 +170,7 @@
 
             });
         }
-    </script>
+    </script> -->
 
 </body>
 
