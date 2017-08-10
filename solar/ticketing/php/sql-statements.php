@@ -110,6 +110,7 @@
 	            $valueString = rtrim($valueString, ", ");
 
 	            $sql = "INSERT INTO ".$table." (".$columnString.") VALUES (".$valueString.")";
+
 	            $query = $this->db->prepare($sql);
 	            $i = 0;
 	            foreach($data as $key=>$val){
@@ -147,7 +148,7 @@
 	            }
 	            foreach($data as $key=>$val){
 	                $pre = ($i > 0)?', ':'';
-	                $colvalSet .= $pre.$key."=:param".$i."";
+	                $colvalSet .= $pre.$key."= :param".$i."";
 	                $i++;
 	            }
 	            if(!empty($conditions)&& is_array($conditions)){

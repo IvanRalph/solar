@@ -23,8 +23,7 @@
         <!-- Main content -->
         <main class="main">
             <?php
-                
-                $requestDetails = $db->getRows();
+              
             ?>
 
             <div class="container-fluid">

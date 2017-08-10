@@ -1,9 +1,4 @@
 <?php
-/*
-------------------------------------------------------
-  www.idiotminds.com
---------------------------------------------------------
-*/
 require_once 'config.php';
 require_once 'lib/Google_Client.php';
 $client = new Google_Client();

@@ -8958,7 +8958,16 @@ hr.transparent {
   .container-fluid {
     padding-right: 15px;
     padding-left: 15px; } }
+    @media (max-width: 992px){
+      .navbar-brand {
+    background-size: auto!important;
+  }
+    }
 @media (min-width: 1200px) {
+  .navbar-brand {
+    background-size: 85% auto!important;
+    margin-left: 2%!important;
+  }
   .container-fluid {
     padding-right: 15px;
     padding-left: 15px; } }

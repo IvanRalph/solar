@@ -38,24 +38,42 @@ if ($client->getAccessToken()) {
   // die();
 
   $checkUser = $db->getRows('users', array('where'=>array('google_id'=>$user['id'])));
-  
-  if($checkUser == 0){
-    $userData = array(
-        'google_id'=>$user['id'],
+  $userData = array(
         'username'=>$user['email'],
         'email'=>$user['email'],
         'firstname'=>$user['given_name'],
         'lastname'=>$user['family_name'],
-        'user_type_id'=>'1'
+        'user_type_id'=>'1',
+        'google_id'=>$user['id']
     );
-  $insert = $db->insert('users', $userData);
+  
+  if($checkUser == 0 || $checkUser == false){
+    $insert = $db->insert('users', $userData);
+  }else{
+    $update = $db->update('users', $userData, array('google_id'=>$user['id']));
   }
 
   // The access token may have been updated lazily.
   $_SESSION['token'] = $client->getAccessToken();
+  $_SESSION['gid'] = $user['id'];
+
+  switch($checkUser[0]['user_type_id']){
+    case 1: 
+      $header = "requestor/index.php";
+      break;
+    case 2:
+      $header = "approver/index.php";
+      break;
+    case 3:
+      $header = "it/index.php";
+      break;
+    default:
+      $header = "index.php";
+      break;
+  }
 
   if(isset($_SESSION['token'])){
-    header("location: requestor/index.php");
+    header("location: " . $header);
   }
 
 } else {
@@ -91,8 +109,7 @@ if ($client->getAccessToken()) {
     <script type="text/javascript" src="js/oauthpopup.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        
-         $('a.login').oauthpopup({
+         $('button.login').oauthpopup({
                 path: '<?php if(isset($authUrl)){echo $authUrl;}else{ echo '';}?>',
                 width:650,
                 height:350,
@@ -110,15 +127,11 @@ if ($client->getAccessToken()) {
                     <div class="card p-4">
                         <div class="card-block">
                             <img src="requestor/img/solar-logo.png" width="60%" style="display: block; margin: 0 auto;"><br><br>
-                            <div class="g-signin2" data-longtitle="true" data-onsuccess="Google_signIn" data-theme="dark" data-width="200"></div>
-                            <?php if(isset($personMarkup)): ?>
-                            <?php print_r($user) ?>
-                            <?php endif ?>
                             <?php
                               if(isset($authUrl)) {
-                                print "<a class='login' href='javascript:void(0);'><img alt='Signin in with Google' src='signin_google.png'/></a>";
-                              } else {
-                               print "<a class='logout' href='javascript:void(0);'>Logout</a>";
+                                print '<button class="loginBtn loginBtn--google login" style="display: block; margin: 0 auto;">
+                                      Login with Google
+                                    </button>';
                               }
                             ?>
                         </div>

@@ -50,9 +50,6 @@
 	        }elseif(!array_key_exists("start",$conditions) && array_key_exists("limit",$conditions)){
 	            $sql .= ' LIMIT '.$conditions['limit']; 
 	        }
-
-	        return $sql;
-	        die();
 	        
 	        $query = $this->db->prepare($sql);
 	        $i = 0;
@@ -113,6 +110,8 @@
 	            $valueString = rtrim($valueString, ", ");
 
 	            $sql = "INSERT INTO ".$table." (".$columnString.") VALUES (".$valueString.")";
+	            return $sql;
+	            die();
 	            $query = $this->db->prepare($sql);
 	            $i = 0;
 	            foreach($data as $key=>$val){

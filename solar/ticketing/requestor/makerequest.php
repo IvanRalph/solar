@@ -20,8 +20,6 @@
 
         <!-- Main content -->
         <main class="main">
-
-
             <div class="container-fluid">
                 <div class="row" style="margin: 2% 0;">
                     <h3>Create Requests</h3>
@@ -37,8 +35,12 @@
                       <div class="col-sm-3">
                         <select id="request-type" class="form-control">
                             <?php
-                                for($i = 0; $i < count($getRequest); $i++){
-                                    echo "<option>". $getRequest[$i]['type'] ."</option>";
+                                if(isset($_GET['subcategory'])){
+
+                                }else{
+                                  for($i = 0; $i < count($getRequest); $i++){
+                                      echo "<option>". $getRequest[$i]['type'] ."</option>";
+                                  }
                                 }
                             ?>
                         </select>
@@ -49,8 +51,12 @@
                       <div class="col-sm-3">
                         <select id="request-category" class="form-control">
                             <?php
-                                for($i = 0; $i < count($getRequest); $i++){
-                                    echo "<option>". $getRequest[$i]['category'] ."</option>";
+                                if(isset($_GET['subcategory'])){
+
+                                }else{
+                                  for($i = 0; $i < count($getRequest); $i++){
+                                      echo "<option>". $getRequest[$i]['category'] ."</option>";
+                                  }
                                 }
                             ?>
                         </select>
@@ -61,8 +67,12 @@
                       <div class="col-sm-3">
                         <select id="request-subcategory" class="form-control">
                             <?php
-                                for($i = 0; $i < count($getRequest); $i++){
-                                    echo "<option>". $getRequest[$i]['subcategory'] ."</option>";
+                                if(isset($_GET['subcategory'])){
+
+                                }else{
+                                  for($i = 0; $i < count($getRequest); $i++){
+                                      echo "<option>". $getRequest[$i]['subcategory'] ."</option>";
+                                  }
                                 }
                             ?>
                         </select>
