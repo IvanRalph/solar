@@ -24,6 +24,7 @@
     <!-- Icons -->
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bower_components/sweetalert2/dist/sweetalert2.min.css">
 
     <!-- Main styles for this application -->
     <link href="css/style.css" rel="stylesheet">
@@ -55,7 +56,7 @@
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
     <header class="app-header navbar">
         <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">&#9776;</button>
-        <a class="navbar-brand" href="index.php"></a><a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
+        <a class="navbar-brand" href="index.php"></a>
         <ul class="nav navbar-nav d-md-down-none" style="margin-right: 2%;">
             <li class="nav-item">
                 <a class="nav-link" id="logout" href="../logout.php">Logout <span class="icon-power"></span></span></a>
