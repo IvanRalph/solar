@@ -49,7 +49,8 @@
                     <div class="form-group row">
                       <label class="col-sm-2 col-form-label">Type</label>
                       <div class="col-sm-3">
-                        <select id="request-type" class="form-control">
+                        <select name="request-type" class="form-control">
+                          <option>Type</option>
                             <?php
                                 populateData($_GET['subcategory'], $getRequest, 'type');
                             ?>
@@ -59,7 +60,8 @@
                     <div class="form-group row">
                       <label class="col-sm-2 col-form-label">Category</label>
                       <div class="col-sm-3">
-                        <select id="request-category" class="form-control">
+                        <select name="request-category" class="form-control">
+                        <option>Category</option>
                             <?php
                                 populateData($_GET['subcategory'], $getRequest, 'category');
                             ?>
@@ -69,7 +71,8 @@
                     <div class="form-group row">
                       <label class="col-sm-2 col-form-label">Subcategory</label>
                       <div class="col-sm-3">
-                        <select id="request-subcategory" class="form-control">
+                        <select name="request-subcategory" class="form-control">
+                        <option>Subcategory</option>
                             <?php
                                 populateData($_GET['subcategory'], $getRequest, 'subcategory');
                             ?>
@@ -77,9 +80,9 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-2 col-form-label">Descrption</label>
+                      <label class="col-sm-2 col-form-label">Description</label>
                       <div class="col-sm-3">
-                        <textarea class="form-control" id="request-description" rows="3" cols="50"></textarea>
+                        <textarea class="form-control" name="request-description" rows="3" cols="50"></textarea>
                       </div>
                     </div>
                     

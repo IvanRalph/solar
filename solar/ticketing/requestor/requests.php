@@ -23,7 +23,7 @@
         <!-- Main content -->
         <main class="main">
             <?php
-              
+              $requests = $db->getRows('request_details', array('where'=>array('requested_by'=>$user[0]['account_id'], '')));
             ?>
 
             <div class="container-fluid">
@@ -66,49 +66,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th>1</th>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>asd</td>
-                          <td class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                        </tr><tr>
-                          <th>2</th>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>asd</td>
-                          <td class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                          <td>Mark</td>
-                        </tr>
+                        <?php for($i = 0; $i < count($requests); $i++){
+                          $requestType = $db->getRows('request_type', array('where'=>array('request_type_id'=>$requests[$i]['request_type_id']), 'select'=>'type, category, subcategory'));
+                        ?>
+                          <tr>
+                            <th><?php echo $requests[$i]['request_no']; ?></th>
+                            <td><?php echo $requestType[$i]['type']; ?></td>
+                            <td><?php echo $requestType[$i]['category']; ?></td>
+                            <td><?php echo $requestType[$i]['subcategory']; ?></td>
+                            <td class="desc"><?php echo $requests[$i]['description']; ?></td>
+                            <td><?php echo $requests[$i]['status']; ?></td>
+                            <td><?php echo $requests[$i]['created_date']; ?></td>
+                            <td><?php echo $requests[$i]['approved_date']; ?></td>
+                            <td><?php echo $requests[$i]['disapproved_date']; ?></td>
+                            <td><?php echo $requests[$i]['approved_by']; ?></td>
+                            <td><?php echo $requests[$i]['assigned_to']; ?></td>
+                            <td><?php echo $requests[$i]['resolved_date']; ?></td>
+                            <td><?php echo $requests[$i]['on_hold_date']; ?></td>
+                            <td><?php echo $requests[$i]['on_hold_description']; ?></td>
+                            <td></td>
+                          </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                 </div>

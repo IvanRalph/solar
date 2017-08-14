@@ -30,31 +30,31 @@
                       <div class="form-group row">
                         <label class="col-2 col-form-label">First name</label>
                         <div class="col-4">
-                          <input class="form-control" type="text" value="John" readonly>
+                          <input class="form-control" type="text" value="<?php echo $user[0]['firstname']; ?>" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-2 col-form-label">Last name</label>
                         <div class="col-4">
-                          <input class="form-control" type="text" value="Doe" readonly>
+                          <input class="form-control" type="text" value="<?php echo $user[0]['lastname']; ?>" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-2 col-form-label">E-Mail Address</label>
                         <div class="col-4">
-                          <input class="form-control" type="email" value="John.Doe@solarphilippines.com" readonly>
+                          <input class="form-control" type="email" value="<?php echo $user[0]['email']; ?>" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-2 col-form-label">Username</label>
                         <div class="col-4">
-                          <input class="form-control" type="text" value="John.Doe@solarphilippines.com" readonly>
+                          <input class="form-control" type="text" value="<?php echo $user[0]['username']; ?>" readonly>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label class="col-2 col-form-label">User rights</label>
                         <div class="col-4">
-                          <input class="form-control" type="email" value="Requestor Only" readonly>
+                          <input class="form-control" type="email" value="<?php if($user[0]['user_type_id'] == 1){echo 'requestor';}else if($user[0]['user_type_id'] == 2){echo 'Requestor and Approver';}else{echo 'IT Staff';} ?>" readonly>
                         </div>
                       </div>
                     </form>
