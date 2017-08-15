@@ -36,7 +36,7 @@
 	            $i = 0;
 	            foreach($conditions['where'] as $key => $value){
 	                $pre = ($i > 0)?' AND ':'';
-	                $sql .= $pre.$key." = :param" . $i;
+	                $sql .= $pre.$key."= :param" . $i;
 	                $i++;
 	            }
 	        }
@@ -156,7 +156,7 @@
 	                $i = 0;
 	                foreach($conditions as $key => $value){
                         $pre = ($i > 0)?' AND ':'';
-                        $whereSql .= $pre.$key." = :cond".$i."";
+                        $whereSql .= $pre.$key."= :cond".$i."";
                         $i++;
 	                }
 	            }

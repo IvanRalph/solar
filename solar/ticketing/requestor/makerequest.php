@@ -90,7 +90,7 @@
                         <div class="col-sm-2"></div>
                       <div class="col-sm-3">
                           <input class="btn btn-primary" id="submit" type="submit" value="Submit">&emsp;
-                          <input class="btn btn-primary" type="reset" value="Clear">&emsp;
+                          <input class="btn btn-primary" id="clear" type="reset" value="Clear">&emsp;
                           <input class="btn btn-primary" id="cancel" type="button" value="Cancel">
                       </div>
                     </div>

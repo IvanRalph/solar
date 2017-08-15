@@ -8978,34 +8978,34 @@ hr.transparent {
     padding-right: 15px;
     padding-left: 15px; } }
 
-    .table > thead:first-child > tr:first-child > th:first-child {
+    #mainTable > thead:first-child > tr:first-child > th:first-child {
         position: absolute;
         display: inline-block;
         background-color: #E4E5E6;
     }
 
-    .table > tbody > tr > th:first-child {
+    #mainTable > tbody > tr > th:first-child {
         position: absolute;
         display: inline-block;
         background-color: #ECEFF1;
         width: 105.97px;
     }
 
-    .table > thead:first-child > tr:first-child > th:nth-child(2) {
+    #mainTable > thead:first-child > tr:first-child > th:nth-child(2) {
         padding-left: 110px;
     }
 
-    .table > tbody > tr > td:nth-child(2) {
+    #mainTable > tbody > tr > td:nth-child(2) {
         padding-left: 110px !important;
     }
 
-    .table th {
+    #mainTable th {
         white-space: nowrap;
         text-overflow: ellipsis;
     }
 
-    .desc {
-        max-width: 40px;
+    td {
+        max-width: 250px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
